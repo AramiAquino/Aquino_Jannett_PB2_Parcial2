@@ -1,7 +1,5 @@
 package ar.edu.unlam.pb2;
 
-import java.util.Map;
-
 public class Jugador extends Persona implements JugadorI{
 
 	private Integer dni;
@@ -78,9 +76,6 @@ public class Jugador extends Persona implements JugadorI{
 	public void setPosicion(Posicion posicion) {
 		this.posicion = posicion;
 	}
-
-
-
 
 	@Override
 	public Integer getCamista() {

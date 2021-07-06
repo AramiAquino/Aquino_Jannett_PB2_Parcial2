@@ -29,7 +29,7 @@ public class FutbolTest {
     }
 	
 	@Test
-    public void queSePuedaCrearUnMiembro() {
+    public void queSePuedanIngresarMiembrosAlPartido() {
         Torneo argentina = new Torneo("Argentina");
 
         Jugador jugador1 = new Jugador(001, 10, posicion.DEL, "Lionel Messi", argentina.getNombre());
