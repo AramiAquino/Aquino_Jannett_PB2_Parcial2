@@ -7,36 +7,61 @@ import org.junit.Test;
 import ar.edu.unlam.pb2.DT;
 import ar.edu.unlam.pb2.Torneo;
 import ar.edu.unlam.pb2.Jugador;
+import ar.edu.unlam.pb2.Plantel;
+import ar.edu.unlam.pb2.Posicion;
 
 public class FutbolTest {
 
 	@Test
-    public void queSePuedaAgregarJugadoresYDT() {
-        Club actual=new Club("Argentina");
-
-        actual.agregarPersona(new DT(1,"Lionel Scaloni","Argentina",45));
-        actual.agregarPersona(new Jugador(2,2,TipoDePosicion.DEF,"Jorge Nitales","Argentina"));
-        actual.agregarPersona(new Jugador(3,3,TipoDePosicion.DEF,"Marco Secil","Argentina"));
-
-        actual.agregarPersona(new Jugador(4,4,TipoDePosicion.DEF,"Gonzalo Montiel","Argentina"));
-        actual.agregarPersona(new Jugador(5,5,TipoDePosicion.DEF,"Lionel Messi","Argentina"));
-        actual.agregarPersona(new Jugador(6,6,TipoDePosicion.MED,"Leandro Paredes","Argentina"));
-        actual.agregarPersona(new Jugador(7,7,TipoDePosicion.MED,"Marcos Acuña","Argentina"));
-        actual.agregarPersona(new Jugador(8,8,TipoDePosicion.DEL,"Nicolás Tagliafico","Argentina"));
-
-        assertEquals((Integer) 8, actual.getCantidadPersona());
+    public void queSePuedaCrearUnPartidoConDosEquipos() {
+		
+		Torneo torneo = new Torneo("Torneo");
+		
+		Jugador jugador1 = new Jugador(01, 11, Posicion.DEF, "", torneo);
+		Jugador jugador2 = new Jugador(02, 12, Posicion.DEF, "", torneo);
+		
+		Plantel plantel1 = new Plantel("");
+		Plantel plantel2 = new Plantel("");
+		
+		plantel1.agregarJugadores(jugador2);
+		plantel1.agregarJugadores(jugador1);
+       
+       
+       assertTrue(torneo.crearPartido(plantel1, plantel2));
 
     }
 	
 	@Test
-    public void queSePuedanIngresarMiembrosAlPartido() {
-        Torneo argentina = new Torneo("Argentina");
-
-        Jugador jugador1 = new Jugador(001, 10, posicion.DEL, "Lionel Messi", argentina.getNombre());
-        DT dt1 = new DT(002, "Lionel Scaloni", argentina.getNombre(), 43);
+    public void queNoHayanDosJugadoresConElMismoDni() {
+		
+		Torneo torneo = new Torneo("Torneo");
+		
+		Jugador jugador1 = new Jugador(01, 11, Posicion.DEF, "", torneo);
+		Jugador jugador2 = new Jugador(01, 11, Posicion.DEF, "", torneo);
+		
+		Plantel plantel1 = new Plantel("");
+		Plantel plantel2 = new Plantel("");
+		
+		plantel1.agregarJugadores(jugador1);
+		
+		assertFalse(plantel1.agregarJugadores(jugador2));
 
     }
-
+	
+	@Test
+    public void queSeNoPuedaCrearPartidoSiNoSeCumpleConLaCantidadDeJugadoresCorrespondienteYLanceUnaExcepcion() {
+		Torneo torneo = new Torneo("Torneo");
+		
+		Jugador jugador1 = new Jugador(01, 11, Posicion.DEF, "", torneo);
+		Jugador jugador2 = new Jugador(02, 12, Posicion.DEF, "", torneo);
+		Plantel plantel1 = new Plantel("");
+		Plantel plantel2 = new Plantel("");
+        plantel1.agregarJugadores(jugador2);
+     
+        assertFalse(torneo.crearPartido(plantel1, plantel2));
+    }
+	
+	
 	@Test(expected = Exception.class)
 	public void queLanceExcepcionDeJugadorNoEncontrado() throws Exception {
 	//PREPARACION

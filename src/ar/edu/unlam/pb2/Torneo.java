@@ -4,33 +4,45 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Torneo {
+public class Torneo extends Exception{
 
 	private String nombre;
-	private Map <Integer, Plantel> partido;
+	private Map <String, Plantel> partido;
+	private Integer idPartido = 0;
 	
-	public Torneo(String nombre, Map<Integer, Plantel> partido) {
+	public Torneo(String nombre) {
 		this.nombre = nombre;
 		this.partido = new HashMap<>();
 	}
 
+	
 	public String getNombre() {
 		return nombre;
 	}
+
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public Map<Integer, Plantel> getPartido() {
+
+	public Map<String, Plantel> getPartido() {
 		return partido;
 	}
 
-	public void setPartido(Map<Integer, Plantel> partido) {
+
+	public void setPartido(Map<String, Plantel> partido) {
 		this.partido = partido;
 	}
-	
-	
-	
+
+
+	public Boolean crearPartido(Plantel equipo1, Plantel equipo2){
+        if(this.partido.size()<2) {
+        	this.partido.put(equipo1.getNombre(), equipo1);
+        	this.partido.put(equipo2.getNombre(), equipo2);
+        	return true;
+        }
+        return false;
+    }
 	
 }
