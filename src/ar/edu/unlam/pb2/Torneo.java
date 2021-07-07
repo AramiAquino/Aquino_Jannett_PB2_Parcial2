@@ -1,6 +1,7 @@
 package ar.edu.unlam.pb2;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -9,6 +10,8 @@ public class Torneo extends Exception{
 	private String nombre;
 	private Map <String, Plantel> partido;
 	private Integer idPartido = 0;
+	private Boolean agg;
+	private List goles;
 	
 	public Torneo(String nombre) {
 		this.nombre = nombre;
@@ -43,6 +46,16 @@ public class Torneo extends Exception{
         	return true;
         }
         return false;
+    }
+
+	
+	public List<Gol> hayGol(String minuto, Jugador jugador) {
+        Gol gol = new Gol(jugador, minuto);
+        if(this.agg == true) {
+            this.goles.add(gol);
+        }
+        return goles;
+
     }
 	
 }

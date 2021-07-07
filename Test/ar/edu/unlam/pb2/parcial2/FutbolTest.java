@@ -61,15 +61,5 @@ public class FutbolTest {
         assertFalse(torneo.crearPartido(plantel1, plantel2));
     }
 	
-	
-	@Test(expected = Exception.class)
-	public void queLanceExcepcionDeJugadorNoEncontrado() throws Exception {
-	//PREPARACION
-	Double dividendo = 5.0;
-	Double divisor = 0.0;
-	Calculadora calcu = new Calculadora();
-	//EJECUCION
-	calcu.dividir(dividendo, divisor);
-	}
 
 }
