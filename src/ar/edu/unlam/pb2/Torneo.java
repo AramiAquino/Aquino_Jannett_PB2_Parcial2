@@ -18,7 +18,6 @@ public class Torneo extends Exception{
 		this.partido = new HashMap<>();
 	}
 
-	
 	public String getNombre() {
 		return nombre;
 	}
@@ -49,7 +48,7 @@ public class Torneo extends Exception{
     }
 
 	
-	public List<Gol> hayGol(String minuto, Jugador jugador) {
+	public List<Gol> hayGol(Jugador jugador, String minuto) {
         Gol gol = new Gol(jugador, minuto);
         if(this.agg == true) {
             this.goles.add(gol);
